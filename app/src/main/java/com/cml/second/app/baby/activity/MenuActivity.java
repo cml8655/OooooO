@@ -60,6 +60,7 @@ public class MenuActivity extends BaseActivity
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
+        item.setChecked(false);
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
@@ -74,6 +75,8 @@ public class MenuActivity extends BaseActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
+        item.setChecked(false);
+        item.setNumericShortcut('5');
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
@@ -88,8 +91,8 @@ public class MenuActivity extends BaseActivity
         } else if (id == R.id.nav_send) {
 
         }
-
         drawer.closeDrawer(GravityCompat.START);
+        setTitle(item.getTitle());
         return true;
     }
 }
