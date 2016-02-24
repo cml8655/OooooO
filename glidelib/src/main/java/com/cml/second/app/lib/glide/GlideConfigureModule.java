@@ -13,7 +13,6 @@ import com.bumptech.glide.module.GlideModule;
 public class GlideConfigureModule implements GlideModule {
     @Override
     public void applyOptions(Context context, GlideBuilder builder) {
-
     }
 
     @Override

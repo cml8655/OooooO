@@ -8,4 +8,6 @@
     <dimen name="fab_margin">16dp</dimen>
 
     <dimen name="toolbar_margin">65dp</dimen>
+    <dimen name="actionBarSize">76dp</dimen>
+    <dimen name="statusBarSize">20dp</dimen>
 </resources>
