@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/OooooO.iml" filepath="$PROJECT_DIR$/OooooO.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/glidelib/glidelib.iml" filepath="$PROJECT_DIR$/glidelib/glidelib.iml" />
     </modules>
   </component>
 </project>
