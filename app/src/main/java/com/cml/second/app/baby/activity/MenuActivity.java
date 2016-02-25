@@ -8,11 +8,8 @@ import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.widget.ImageButton;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.fragment.MainFragment;
@@ -63,33 +60,6 @@ public class MenuActivity extends BaseActivity {
         menuHelper.showContainer(MainFragment.class);
     }
 
-
-    /**
-     * 将默认的menu栏迁移到自定义的custom title容器上，以解决title居中问题
-     */
-    private void setupCustomNavigation() {
-        int size = toolbar.getChildCount();
-
-        //设置toolbar的菜单栏偏移问题
-        ImageButton menuBtn = null;
-
-        for (int i = 0; i < size; i++) {
-            View view = toolbar.getChildAt(i);
-            if (view instanceof ImageButton) {
-                menuBtn = (ImageButton) view;
-                break;
-            }
-        }
-
-        if (null != menuBtn) {
-            toolbar.removeView(menuBtn);
-            RelativeLayout toolbarTitleContainer = (RelativeLayout) findViewById(R.id.toolbar_title_container);
-            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            params.addRule(RelativeLayout.CENTER_VERTICAL);
-            toolbarTitleContainer.addView(menuBtn, 0, params);
-        }
-
-    }
 
     @Override
     public void onBackPressed() {

@@ -26,5 +26,8 @@ dependencies {
     compile 'com.android.support:design:23.1.1'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'org.greenrobot:eventbus:3.0.0'
+    compile 'me.imid.swipebacklayout.lib:library:1.0.0'
     compile project(':glidelib')
+    compile project(':commonlib')
+    compile project(':volleylib')
 }

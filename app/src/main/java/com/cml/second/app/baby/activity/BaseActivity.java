@@ -3,6 +3,11 @@ package com.cml.second.app.baby.activity;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.cml.second.app.baby.R;
@@ -27,6 +32,41 @@ public class BaseActivity extends AppCompatActivity {
         titleView = (TextView) findViewById(R.id.toolbar_title);
     }
 
+    /**
+     * 将默认的menu栏迁移到自定义的custom title容器上，以解决title居中问题
+     */
+    protected void setupCustomNavigation() {
+        int size = toolbar.getChildCount();
+
+        //设置toolbar的菜单栏偏移问题
+        ImageButton menuBtn = null;
+
+        for (int i = 0; i < size; i++) {
+            View view = toolbar.getChildAt(i);
+            if (view instanceof ImageButton) {
+                menuBtn = (ImageButton) view;
+                break;
+            }
+        }
+
+        if (null != menuBtn) {
+            toolbar.removeView(menuBtn);
+            RelativeLayout toolbarTitleContainer = (RelativeLayout) findViewById(R.id.toolbar_title_container);
+            RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            params.addRule(RelativeLayout.CENTER_VERTICAL);
+            toolbarTitleContainer.addView(menuBtn, 0, params);
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
+            onBackPressed();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     public void setCustomTitle(int titleRes) {
         titleView.setText(titleRes);

@@ -1,5 +1,6 @@
 package com.cml.second.app.baby.helper.menu;
 
+import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -7,10 +8,10 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.MenuItem;
 
 import com.cml.second.app.baby.R;
+import com.cml.second.app.baby.activity.ContainerActivity;
 import com.cml.second.app.baby.activity.MenuActivity;
 import com.cml.second.app.baby.fragment.BaseFragment;
 import com.cml.second.app.baby.fragment.MainFragment;
-import com.cml.second.app.baby.fragment.ShareFragment;
 
 /**
  * Created by cmlBeliever on 2016/2/24.
@@ -22,10 +23,6 @@ public class MenuHelper implements NavigationView.OnNavigationItemSelectedListen
     public MenuHelper(MenuActivity menuActivity, DrawerLayout drawer) {
         this.menuActivity = menuActivity;
         this.drawer = drawer;
-    }
-
-    public void showContainer(BaseFragment fragment) {
-        menuActivity.getSupportFragmentManager().beginTransaction().replace(R.id.layout_container, fragment).commit();
     }
 
     public void showContainer(Class<? extends BaseFragment> fragment) {
@@ -42,10 +39,10 @@ public class MenuHelper implements NavigationView.OnNavigationItemSelectedListen
 
         if (id == R.id.nav_camera) {
             // Handle the camera action
-            showContainer(ShareFragment.class);
-        } else if (id == R.id.nav_gallery) {
             showContainer(MainFragment.class);
-
+        } else if (id == R.id.nav_gallery) {
+            Intent intent = new Intent(menuActivity, ContainerActivity.class);
+            menuActivity.startActivity(intent);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
