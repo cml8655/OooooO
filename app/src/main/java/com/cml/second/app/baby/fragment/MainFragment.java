@@ -24,7 +24,8 @@ public class MainFragment extends BaseFragment {
         ImageView img = new ImageView(activity);
         img.setLayoutParams(new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
 
-        Glide.with(this).load("http://b.hiphotos.baidu.com/zhidao/pic/item/63d9f2d3572c11dfb068871a612762d0f703c249.jpg").into(img);
+        Glide.with(this).load("http://pic11.nipic.com/20101107/5963073_141803043683_2.gif").asGif().placeholder(R.drawable.success_circle).into(img);
+//        Glide.with(this).load("http://b.hiphotos.baidu.com/zhidao/pic/item/63d9f2d3572c11dfb068871a612762d0f703c249.jpg").into(img);
         container.addView(img);
 
 //        <ImageView

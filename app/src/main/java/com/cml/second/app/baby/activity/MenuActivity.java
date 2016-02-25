@@ -15,6 +15,7 @@ import android.widget.LinearLayout;
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.fragment.MainFragment;
 import com.cml.second.app.baby.helper.menu.MenuHelper;
+import com.cml.second.app.baby.utils.GenerateGifUtils;
 import com.cml.second.app.baby.widget.dialog.DefaultSelectorDialog;
 
 import java.util.ArrayList;
@@ -53,6 +54,7 @@ public class MenuActivity extends BaseActivity {
 //                AlertDialog dialog = new AlertDialog.Builder(MenuActivity.this).setSingleChoiceItems(new CharSequence[]{"相机", "食品"}, -1, null).setTitle("title").create();
 //                dialog.getWindow().setGravity(Gravity.BOTTOM);
 //                dialog.show();
+                new GenerateGifUtils();
                 List<DefaultSelectorDialog.SelectorItem> data = new ArrayList<DefaultSelectorDialog.SelectorItem>();
                 for (int i = 0; i < 5; i++) {
                     data.add(new DefaultSelectorDialog.SelectorItem("text" + i, -1));
