@@ -6,6 +6,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.Gravity;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -14,6 +15,10 @@ import android.widget.LinearLayout;
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.fragment.MainFragment;
 import com.cml.second.app.baby.helper.menu.MenuHelper;
+import com.cml.second.app.baby.widget.dialog.DefaultSelectorDialog;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MenuActivity extends BaseActivity {
 
@@ -42,6 +47,20 @@ public class MenuActivity extends BaseActivity {
 //        collapsingToolbarLayout.setTitleEnabled(true);
 
         floatingActionButton = (FloatingActionButton) findViewById(R.id.fab);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                AlertDialog dialog = new AlertDialog.Builder(MenuActivity.this).setSingleChoiceItems(new CharSequence[]{"相机", "食品"}, -1, null).setTitle("title").create();
+//                dialog.getWindow().setGravity(Gravity.BOTTOM);
+//                dialog.show();
+                List<DefaultSelectorDialog.SelectorItem> data = new ArrayList<DefaultSelectorDialog.SelectorItem>();
+                for (int i = 0; i < 5; i++) {
+                    data.add(new DefaultSelectorDialog.SelectorItem("text" + i, -1));
+                }
+                new DefaultSelectorDialog(MenuActivity.this,data).setGravity(Gravity.BOTTOM).setTitle("title").show();
+//                new SelectorDialog(MenuActivity.this, data).setGravity(Gravity.BOTTOM).setTitle("我是他itle").show();
+            }
+        });
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
