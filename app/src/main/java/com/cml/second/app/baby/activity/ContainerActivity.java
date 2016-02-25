@@ -22,11 +22,13 @@ public class ContainerActivity extends BaseSwipeBackActivity {
         initToolbar();
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         setupCustomNavigation();
-        setCustomTitle("测试");
 
+        //显示参数上的Fragment
         String targetClassName = getIntent().getStringExtra(EXTRA_CONTAINER);
         if (null != targetClassName) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.layout_container, Fragment.instantiate(this, targetClassName)).commit();
+            BaseFragment fragment = (BaseFragment) Fragment.instantiate(this, targetClassName);
+            getSupportFragmentManager().beginTransaction().replace(R.id.layout_container, fragment).commit();
+            setCustomTitle(fragment.getTitle());
         }
 
     }

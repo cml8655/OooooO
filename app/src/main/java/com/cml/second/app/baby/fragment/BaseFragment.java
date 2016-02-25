@@ -23,4 +23,8 @@ public abstract class BaseFragment extends Fragment {
 
     protected abstract int getContainerRes();
 
+    public CharSequence getTitle() {
+        return null;
+    }
+
 }
