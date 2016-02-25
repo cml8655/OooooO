@@ -1,6 +1,5 @@
 package com.cml.second.app.baby.helper.menu;
 
-import android.content.Intent;
 import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
@@ -12,6 +11,7 @@ import com.cml.second.app.baby.activity.ContainerActivity;
 import com.cml.second.app.baby.activity.MenuActivity;
 import com.cml.second.app.baby.fragment.BaseFragment;
 import com.cml.second.app.baby.fragment.MainFragment;
+import com.cml.second.app.baby.fragment.ShareFragment;
 
 /**
  * Created by cmlBeliever on 2016/2/24.
@@ -41,8 +41,7 @@ public class MenuHelper implements NavigationView.OnNavigationItemSelectedListen
             // Handle the camera action
             showContainer(MainFragment.class);
         } else if (id == R.id.nav_gallery) {
-            Intent intent = new Intent(menuActivity, ContainerActivity.class);
-            menuActivity.startActivity(intent);
+            ContainerActivity.startActivity(menuActivity, ShareFragment.class);
         } else if (id == R.id.nav_slideshow) {
 
         } else if (id == R.id.nav_manage) {
