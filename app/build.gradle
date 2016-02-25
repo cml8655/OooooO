@@ -10,6 +10,13 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_7
+            targetCompatibility JavaVersion.VERSION_1_7
+        }
+        ndk {
+            moduleName = "libgifflen"
+        }
     }
     buildTypes {
         release {
@@ -17,6 +24,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
 }
 
 dependencies {
