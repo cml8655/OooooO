@@ -22,9 +22,4 @@ public class ShareFragment extends BaseFragment {
     protected int getContainerRes() {
         return R.layout.fragment_share;
     }
-
-    @Override
-    public CharSequence getTitle() {
-        return "我是自定义title";
-    }
 }
