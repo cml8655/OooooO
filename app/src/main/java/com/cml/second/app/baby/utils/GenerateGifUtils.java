@@ -44,14 +44,16 @@ public class GenerateGifUtils {
             throw new NullPointerException("Bitmaps should have content!!!");
 
         }
-        int width = bitmaps[0].getWidth();
-        int height = bitmaps[0].getHeight();
+        int width = Math.min(bitmaps[0].getWidth(), bitmaps[1].getWidth());
+        int height = Math.min(bitmaps[0].getHeight(), bitmaps[1].getHeight());
 
+        //生成gif图片
         if (Init(fileName, width, height, 256, 100, delay) != 0) {
             Log.e(TAG, "GifUtil init failed");
             return;
         }
 
+        //将图片写入gif
         for (Bitmap bp : bitmaps) {
 
             int pixels[] = new int[width * height];

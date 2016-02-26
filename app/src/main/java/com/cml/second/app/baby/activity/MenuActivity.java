@@ -1,6 +1,9 @@
 package com.cml.second.app.baby.activity;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -54,12 +57,29 @@ public class MenuActivity extends BaseActivity {
 //                AlertDialog dialog = new AlertDialog.Builder(MenuActivity.this).setSingleChoiceItems(new CharSequence[]{"相机", "食品"}, -1, null).setTitle("title").create();
 //                dialog.getWindow().setGravity(Gravity.BOTTOM);
 //                dialog.show();
-                new GenerateGifUtils();
+
+                Bitmap[] bitmaps = new Bitmap[5];
+                bitmaps[0] = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
+                bitmaps[1] = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_menu_camera);
+                bitmaps[2] = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_delete);
+                bitmaps[3] = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_btn_speak_now);
+                bitmaps[4] = BitmapFactory.decodeResource(getResources(), android.R.drawable.ic_dialog_dialer);
+                try {
+//                    String url1 = "http://www.bz55.com/uploads/allimg/150309/139-150309101A0.jpg";
+//                    String url2 = "http://www.bz55.com/uploads/allimg/150309/139-150309101F2.jpg";
+//                    bitmaps[0] = BitmapFactory.decodeStream(new FileInputStream(url1));
+//                    bitmaps[1] = BitmapFactory.decodeStream(new FileInputStream(url2));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+
+
+                new GenerateGifUtils().Encode(Environment.getExternalStorageDirectory() + "/aaaaa.gif", bitmaps, 100);
                 List<DefaultSelectorDialog.SelectorItem> data = new ArrayList<DefaultSelectorDialog.SelectorItem>();
                 for (int i = 0; i < 5; i++) {
                     data.add(new DefaultSelectorDialog.SelectorItem("text" + i, -1));
                 }
-                new DefaultSelectorDialog(MenuActivity.this,data).setGravity(Gravity.BOTTOM).setTitle("title").show();
+                new DefaultSelectorDialog(MenuActivity.this, data).setGravity(Gravity.BOTTOM).setTitle("title").show();
 //                new SelectorDialog(MenuActivity.this, data).setGravity(Gravity.BOTTOM).setTitle("我是他itle").show();
             }
         });
