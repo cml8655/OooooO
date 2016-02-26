@@ -6,4 +6,12 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
+
+    <!--menu titles-->
+    <string name="title_main">主页</string>
+    <string name="title_babies">我的宝贝</string>
+    <string name="title_friends">我的好友</string>
+    <string name="title_share">我的分享</string>
+    <string name="title_exchange">切换用户</string>
+    <string name="title_settings">设置中心</string>
 </resources>
