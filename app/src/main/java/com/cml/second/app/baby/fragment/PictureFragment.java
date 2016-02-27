@@ -2,20 +2,18 @@ package com.cml.second.app.baby.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.utils.AppUtils;
 
 import java.io.File;
-import java.io.InputStream;
 
 import butterknife.Bind;
 
@@ -70,28 +68,22 @@ public class PictureFragment extends BaseFragment {
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
         file = new File(AppUtils.getPicturePath(), "file" + System.currentTimeMillis() + ".jpg");
         cameraFileUri = Uri.fromFile(file);
-        intent.putExtra(MediaStore.EXTRA_OUTPUT, contentUri);
-//        intent.putExtra("outputFormat", Bitmap.CompressFormat.JPEG.toString());
+        intent.putExtra(MediaStore.EXTRA_OUTPUT, cameraFileUri);
         startActivityForResult(intent, REQUEST_CAMEAR);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (requestCode == Activity.RESULT_OK) {
+        if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_CAMEAR) {//拍照选择文件
                 try {
-                    InputStream inputStream = getActivity().getContentResolver().openInputStream(data.getData());
-                    imgView.setImageBitmap(BitmapFactory.decodeStream(inputStream));
-//                    Glide.with(getActivity()).load(getActivity().getContentResolver().openInputStream(data.getData())).centerCrop().crossFade().into(imgView);
-//                    Glide.with(getActivity()).load("file://"+file.getAbsolutePath()).centerCrop().crossFade().into(imgView);
+                    file.exists();
+                    Glide.with(getActivity()).load(file).into(imgView);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-//                Glide.with(getActivity()).load(data.getData()).centerCrop().crossFade().into(imgView);
             }
         }
-        descView.setText(data.getDataString() + ",result:" + resultCode + "," + requestCode + "," + file.getAbsolutePath() + ":" + file.exists());
-        Toast.makeText(getActivity(), "result:" + resultCode + "," + data.getData(), Toast.LENGTH_LONG).show();
     }
 
     @Override
