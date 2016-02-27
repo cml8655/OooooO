@@ -5,12 +5,15 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.cml.second.app.baby.R;
+import com.cml.second.app.baby.activity.PhotoViewActivity;
 import com.cml.second.app.baby.utils.AppUtils;
 
 import java.io.File;
@@ -59,6 +62,15 @@ public class PictureFragment extends BaseFragment {
         if (TYPE_FROM_CAMERA == type) {
             //TODO 启动相机权限
             getPictureFromCamera();
+            imgView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getActivity(), PhotoViewActivity.class);
+                    intent.setData(cameraFileUri);
+                    ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeScaleUpAnimation(v, v.getWidth() / 2, v.getHeight() / 2, 100, 100);
+                    ActivityCompat.startActivity(getActivity(), intent, optionsCompat.toBundle());
+                }
+            });
         }
     }
 
