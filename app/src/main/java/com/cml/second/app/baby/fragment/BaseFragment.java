@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cml.second.app.baby.R;
+
 import butterknife.ButterKnife;
 
 /**
@@ -24,7 +26,7 @@ public abstract class BaseFragment extends Fragment {
     protected abstract int getContainerRes();
 
     public int getTitle() {
-        return -1;
+        return R.string.title_exchange;
     }
 
 }
