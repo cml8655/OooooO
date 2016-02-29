@@ -1,6 +1,7 @@
 package com.cml.second.app.baby.activity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -17,6 +18,7 @@ import com.cml.second.app.baby.fragment.MainFragment;
 import com.cml.second.app.baby.fragment.PictureFragment;
 import com.cml.second.app.baby.helper.menu.MenuHelper;
 import com.cml.second.app.baby.utils.DialogUtils;
+import com.umeng.socialize.UMShareAPI;
 
 public class MenuActivity extends BaseActivity {
 
@@ -24,6 +26,7 @@ public class MenuActivity extends BaseActivity {
     private FloatingActionButton floatingActionButton;
     private MenuHelper menuHelper;
     private LinearLayout toolbarCustomLayout;//自定义toolbar背景界面
+    public UMShareAPI umShareAPI;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,8 @@ public class MenuActivity extends BaseActivity {
         setupCustomNavigation();
 
         menuHelper.showContainer(MainFragment.class);
+
+        umShareAPI = UMShareAPI.get(this);
     }
 
     class PickerClickListener implements DialogInterface.OnClickListener {
@@ -138,6 +143,12 @@ public class MenuActivity extends BaseActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        umShareAPI.onActivityResult(requestCode, resultCode, data);
     }
 
 

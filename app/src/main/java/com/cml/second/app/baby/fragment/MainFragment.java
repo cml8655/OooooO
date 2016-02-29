@@ -5,10 +5,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.activity.MenuActivity;
+import com.socks.library.KLog;
+import com.umeng.socialize.UMAuthListener;
+import com.umeng.socialize.UMShareAPI;
+import com.umeng.socialize.bean.SHARE_MEDIA;
+
+import java.util.Map;
+
+import butterknife.OnClick;
 
 /**
  * Created by cmlBeliever on 2016/2/24.
@@ -35,6 +44,36 @@ public class MainFragment extends BaseFragment {
 //        android:fitsSystemWindows="true"
 //        android:src="@mipmap/ic_launcher"/>
 
+    }
+
+    UMShareAPI umShareAPI;
+
+    @OnClick(R.id.qq_login)
+    public void qqLoginClicked(View v) {
+
+        umShareAPI = UMShareAPI.get(getContext());
+
+        umShareAPI.doOauthVerify(getActivity(), SHARE_MEDIA.QQ, new UMAuthListener() {
+            @Override
+            public void onComplete(SHARE_MEDIA share_media, int i, Map<String, String> map) {
+                KLog.d(TAG, map);
+                // {access_token=8BDAD96F1EAFAA875436E006082E018D, page_type=, appid=, pfkey=e68a742c8d32ee5d7a5f4129db32742a, uid=5BAF83B564C6468D3B5FFBB64F024F82, auth_time=, sendinstall=, pf=desktop_m_qq-10000144-android-2002-, expires_in=7776000, pay_token=217DAB97919A8E11644D6F4FC84B3C5A, ret=0, openid=5BAF83B564C6468D3B5FFBB64F024F82}
+                if (map.containsKey("uid")) {//授权成功，uid对为用户id
+                    String qqUserId = map.get("uid");
+                    Toast.makeText(getActivity(), "qq授权登录成功" + qqUserId, Toast.LENGTH_LONG).show();
+                }
+            }
+
+            @Override
+            public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
+                Toast.makeText(getActivity(), "onError", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancel(SHARE_MEDIA share_media, int i) {
+                Toast.makeText(getActivity(), "onCancel", Toast.LENGTH_LONG).show();
+            }
+        });
     }
 
     @Override

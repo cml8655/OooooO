@@ -15,6 +15,9 @@ import butterknife.ButterKnife;
  * Created by cmlBeliever on 2016/2/24.
  */
 public abstract class BaseFragment extends Fragment {
+
+    public static final String TAG = BaseFragment.class.getSimpleName();
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
