@@ -2,6 +2,7 @@ package com.cml.second.app.baby.fragment;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -15,8 +16,10 @@ import com.bumptech.glide.Glide;
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.activity.PhotoViewActivity;
 import com.cml.second.app.baby.utils.AppUtils;
+import com.cml.second.app.common.img.ImageCompress;
 
 import java.io.File;
+import java.io.FileOutputStream;
 
 import butterknife.Bind;
 
@@ -89,8 +92,12 @@ public class PictureFragment extends BaseFragment {
         if (resultCode == Activity.RESULT_OK) {
             if (requestCode == REQUEST_CAMEAR) {//拍照选择文件
                 try {
-                    file.exists();
-                    Glide.with(getActivity()).load(file).into(imgView);
+                    Bitmap bitmap = ImageCompress.compressFromFile(file);
+                    imgView.setImageBitmap(bitmap);
+                    bitmap.compress(Bitmap.CompressFormat.JPEG, 60, new FileOutputStream(new File(AppUtils.getPicturePath(), "output.jpg")));
+                    //TODO
+//                    Glide.with(getActivity()).load(file).into(imgView);
+
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
