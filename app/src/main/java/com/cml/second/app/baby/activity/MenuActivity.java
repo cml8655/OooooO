@@ -12,15 +12,23 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.fragment.MainFragment;
 import com.cml.second.app.baby.fragment.PictureFragment;
 import com.cml.second.app.baby.helper.menu.MenuHelper;
 import com.cml.second.app.baby.utils.DialogUtils;
+import com.socks.library.KLog;
 import com.umeng.socialize.UMShareAPI;
 
+import java.util.List;
+
+import me.nereo.multi_image_selector.MultiImageSelectorActivity;
+
 public class MenuActivity extends BaseActivity {
+
+    private static final int REQUEST_IMAGE = 2001;
 
     private DrawerLayout drawer;
     private FloatingActionButton floatingActionButton;
@@ -109,6 +117,12 @@ public class MenuActivity extends BaseActivity {
                     ContainerActivity.startActivity(MenuActivity.this, PictureFragment.class, PictureFragment.getStartBundle(PictureFragment.TYPE_FROM_CAMERA, null));
                     break;
                 case DialogUtils.INDEX_LOCAL_PICTURE:
+                    Intent intent = new Intent(MenuActivity.this, MultiImageSelectorActivity.class);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SHOW_CAMERA, true);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_COUNT, 9);
+                    intent.putExtra(MultiImageSelectorActivity.EXTRA_SELECT_MODE, MultiImageSelectorActivity.MODE_MULTI);
+//                    intent.putStringArrayListExtra(MultiImageSelectorActivity.EXTRA_DEFAULT_SELECTED_LIST, defaultDataArray);
+                    startActivityForResult(intent, REQUEST_IMAGE);
                     break;
                 case DialogUtils.INDEX_VIDEO:
                     break;
@@ -148,7 +162,17 @@ public class MenuActivity extends BaseActivity {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        umShareAPI.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == REQUEST_IMAGE) {
+            if (resultCode == RESULT_OK) {
+                // Get the result list of select image paths
+                List<String> path = data.getStringArrayListExtra(MultiImageSelectorActivity.EXTRA_RESULT);
+                Toast.makeText(this, "选择图片返回" + path, Toast.LENGTH_LONG).show();
+                KLog.d(TAG, "照片选择返回", path);
+            }
+        }else{
+            umShareAPI.onActivityResult(requestCode, resultCode, data);
+        }
+
     }
 
 

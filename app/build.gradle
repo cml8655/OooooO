@@ -43,5 +43,6 @@ dependencies {
     compile project(':glidelib')
     compile project(':commonlib')
     compile project(':volleylib')
+    compile project(':multi-image-selector')
 }
 

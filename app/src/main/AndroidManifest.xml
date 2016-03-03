@@ -50,6 +50,12 @@
             android:name=".activity.ContainerActivity"
             android:screenOrientation="portrait"
             android:theme="@style/AppTheme.NoActionBar.Translucent"/>
+
+        <activity
+            android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
+            android:configChanges="orientation|screenSize"/>
+
+
         <!--照片截取功能-->
         <activity android:name="com.soundcloud.android.crop.CropImageActivity"/>
         <activity

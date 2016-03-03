@@ -16,6 +16,9 @@ import com.cml.second.app.baby.R;
  * Created by cmlBeliever on 2016/2/23.
  */
 public class BaseActivity extends AppCompatActivity {
+
+    public static final String TAG = BaseActivity.class.getSimpleName();
+
     protected Toolbar toolbar;
     private TextView titleView;
 

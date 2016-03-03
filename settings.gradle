@@ -1,1 +1,1 @@
-include ':app', ':glidelib', ':commonlib', ':volleylib'
+include ':app', ':glidelib', ':commonlib', ':volleylib', ':multi-image-selector'
