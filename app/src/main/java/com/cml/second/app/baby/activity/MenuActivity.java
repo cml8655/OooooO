@@ -4,10 +4,10 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.WindowManager;
@@ -19,9 +19,11 @@ import com.cml.second.app.baby.fragment.MainFragment;
 import com.cml.second.app.baby.fragment.PictureFragment;
 import com.cml.second.app.baby.helper.menu.MenuHelper;
 import com.cml.second.app.baby.utils.DialogUtils;
+import com.cml.second.app.common.widget.menu.NavigationMenuView;
 import com.socks.library.KLog;
 import com.umeng.socialize.UMShareAPI;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import me.nereo.multi_image_selector.MultiImageSelectorActivity;
@@ -31,10 +33,12 @@ public class MenuActivity extends BaseActivity {
     private static final int REQUEST_IMAGE = 2001;
 
     private DrawerLayout drawer;
+    private NavigationMenuView menuView;
     private FloatingActionButton floatingActionButton;
     private MenuHelper menuHelper;
     private LinearLayout toolbarCustomLayout;//自定义toolbar背景界面
     public UMShareAPI umShareAPI;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,8 +100,27 @@ public class MenuActivity extends BaseActivity {
 
         menuHelper = new MenuHelper(this, drawer);
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(menuHelper);
+        menuView = (NavigationMenuView) findViewById(R.id.nav_view);
+
+        List<NavigationMenuView.MenuItem> menus = new ArrayList<>();
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
+        menuView.setMenus(menus);
+
+        View headerView = LayoutInflater.from(this).inflate(R.layout.nav_header_menu, null);
+        menuView.setHeader(headerView);
+        menuView.setMenuSelectedLisener(menuHelper);
+
+//        TextView navigationView = (TextView) findViewById(R.id.nav_view);
+//        navigationView.setNavigationItemSelectedListener(menuHelper);
 
         //将默认的menu栏迁移到自定义的custom title容器上，以解决title居中问题
         setupCustomNavigation();
@@ -169,7 +192,7 @@ public class MenuActivity extends BaseActivity {
                 Toast.makeText(this, "选择图片返回" + path, Toast.LENGTH_LONG).show();
                 KLog.d(TAG, "照片选择返回", path);
             }
-        }else{
+        } else {
             umShareAPI.onActivityResult(requestCode, resultCode, data);
         }
 
