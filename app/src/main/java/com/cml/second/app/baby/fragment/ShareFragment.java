@@ -10,12 +10,14 @@ import android.view.ViewGroup;
 import android.widget.PopupWindow;
 import android.widget.Toast;
 
+import com.bigkoo.pickerview.TimePickerView;
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.activity.ContainerActivity;
 import com.cml.second.app.common.widget.WheelView;
 import com.cml.second.app.common.widget.dialog.WheelViewDialog;
 
 import java.util.Arrays;
+import java.util.Date;
 
 import butterknife.Bind;
 import butterknife.OnClick;
@@ -55,6 +57,22 @@ public class ShareFragment extends BaseFragment {
 //        container.removeAllViews();
     }
 
+    @OnClick(R.id.datepicker)
+    public void onDatePickerClicked(View v) {
+        TimePickerView timePickerView = new TimePickerView(getContext(), TimePickerView.Type.YEAR_MONTH_DAY);
+        timePickerView.setOnTimeSelectListener(new TimePickerView.OnTimeSelectListener() {
+            @Override
+            public void onTimeSelect(Date date) {
+                Toast.makeText(getContext(),"日期选择"+date,Toast.LENGTH_LONG).show();
+            }
+        });
+        timePickerView.setTitle("日期选择");
+        timePickerView.setRange(1900,2015);
+        timePickerView.setCancelable(false);
+        timePickerView.setCyclic(false);
+        timePickerView.show();
+    }
+
     @OnClick(R.id.popup_window)
     public void onPopupClicked(View v) {
         View contentView = LayoutInflater.from(getContext()).inflate(R.layout.view_popup_window, null);
@@ -62,11 +80,11 @@ public class ShareFragment extends BaseFragment {
         window.setContentView(contentView);
         window.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
         window.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
-        ContainerActivity activity=(ContainerActivity)getActivity();
+        ContainerActivity activity = (ContainerActivity) getActivity();
         window.setOutsideTouchable(true);
         window.setBackgroundDrawable(new ColorDrawable(Color.CYAN));
 //        window.showAtLocation(activity.toolbar,Gravity.CENTER|Gravity.TOP,0,0);
-        window.showAsDropDown(activity.toolbar,0,0);
+        window.showAsDropDown(activity.toolbar, 0, 0);
     }
 
     @OnClick(R.id.wheel_dialog)
