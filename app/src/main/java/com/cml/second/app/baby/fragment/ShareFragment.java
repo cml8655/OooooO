@@ -1,12 +1,17 @@
 package com.cml.second.app.baby.fragment;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.PopupWindow;
 import android.widget.Toast;
 
 import com.cml.second.app.baby.R;
+import com.cml.second.app.baby.activity.ContainerActivity;
 import com.cml.second.app.common.widget.WheelView;
 import com.cml.second.app.common.widget.dialog.WheelViewDialog;
 
@@ -24,6 +29,9 @@ public class ShareFragment extends BaseFragment {
 
     @Bind(R.id.wheel_view)
     WheelView wheelView;
+
+    @Bind(R.id.top_layout)
+    View topLayoutView;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -45,6 +53,20 @@ public class ShareFragment extends BaseFragment {
 //        MenuActivity activity = (MenuActivity) getActivity();
 //        LinearLayout container = activity.getToolbarCustomLayout();
 //        container.removeAllViews();
+    }
+
+    @OnClick(R.id.popup_window)
+    public void onPopupClicked(View v) {
+        View contentView = LayoutInflater.from(getContext()).inflate(R.layout.view_popup_window, null);
+        PopupWindow window = new PopupWindow(getActivity());
+        window.setContentView(contentView);
+        window.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
+        window.setHeight(ViewGroup.LayoutParams.WRAP_CONTENT);
+        ContainerActivity activity=(ContainerActivity)getActivity();
+        window.setOutsideTouchable(true);
+        window.setBackgroundDrawable(new ColorDrawable(Color.CYAN));
+//        window.showAtLocation(activity.toolbar,Gravity.CENTER|Gravity.TOP,0,0);
+        window.showAsDropDown(activity.toolbar,0,0);
     }
 
     @OnClick(R.id.wheel_dialog)

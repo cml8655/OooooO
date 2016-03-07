@@ -19,7 +19,7 @@ public class BaseActivity extends AppCompatActivity {
 
     public static final String TAG = BaseActivity.class.getSimpleName();
 
-    protected Toolbar toolbar;
+    public Toolbar toolbar;
     private TextView titleView;
 
     protected int getStatusBarHeight() {
