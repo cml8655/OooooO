@@ -1,7 +1,12 @@
 package com.cml.second.app.common.widget.indexable;
 
 import android.content.Context;
+import android.graphics.Canvas;
 import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.MotionEvent;
@@ -19,6 +24,9 @@ public class IndexableBar extends LinearLayout {
 
     private List<String> section;
     private int sectionHeight;
+    private int textColor = Color.WHITE;
+    private int textSize = 16;
+    private int selectedTextColor = Color.GREEN;
 
     public IndexableBar(Context context) {
         super(context);
@@ -43,7 +51,37 @@ public class IndexableBar extends LinearLayout {
 
     public void setSection(List<String> section) {
         this.section = section;
+        removeAllViews();
         setItems();//添加数据
+        setBackground();
+    }
+
+    private void setBackground() {
+        Drawable bg = new Drawable() {
+            @Override
+            public void draw(Canvas canvas) {
+                Paint bgPaint = new Paint(Paint.ANTI_ALIAS_FLAG);
+                bgPaint.setColor(Color.argb(64, 0, 0, 0));
+                RectF bgRectf = new RectF(0, 10, getWidth(), getHeight() - 10);
+                canvas.drawRoundRect(bgRectf, 10, 10, bgPaint);
+            }
+
+            @Override
+            public void setAlpha(int alpha) {
+
+            }
+
+            @Override
+            public void setColorFilter(ColorFilter colorFilter) {
+
+            }
+
+            @Override
+            public int getOpacity() {
+                return 0;
+            }
+        };
+        setBackgroundDrawable(bg);
     }
 
     private void setItems() {
@@ -64,9 +102,12 @@ public class IndexableBar extends LinearLayout {
         LayoutParams params = new LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, 0);
         params.weight = 1;
         textView.setLayoutParams(params);
+        textView.setTextColor(textColor);
+        textView.setTextSize(textSize);
         textView.setText(text);
         return textView;
     }
+
 
     @Override
     public boolean onInterceptTouchEvent(MotionEvent ev) {
@@ -82,11 +123,11 @@ public class IndexableBar extends LinearLayout {
 
                 View child = getView(event.getY());
                 for (int i = 0; i < getChildCount(); i++) {
-                    View c = getChildAt(i);
+                    TextView c = (TextView) getChildAt(i);
                     if (c == child) {
-                        child.setBackgroundColor(Color.BLUE);
+                        c.setTextColor(selectedTextColor);
                     } else {
-                        c.setBackgroundColor(Color.WHITE);
+                        c.setTextColor(textColor);
                     }
                 }
                 return true;
@@ -104,5 +145,29 @@ public class IndexableBar extends LinearLayout {
 
     private View getView(float y) {
         return getChildAt((int) ((y - getPaddingBottom()) / sectionHeight));
+    }
+
+    public int getTextColor() {
+        return textColor;
+    }
+
+    public void setTextColor(int textColor) {
+        this.textColor = textColor;
+    }
+
+    public int getTextSize() {
+        return textSize;
+    }
+
+    public void setTextSize(int textSize) {
+        this.textSize = textSize;
+    }
+
+    public int getSelectedTextColor() {
+        return selectedTextColor;
+    }
+
+    public void setSelectedTextColor(int selectedTextColor) {
+        this.selectedTextColor = selectedTextColor;
     }
 }

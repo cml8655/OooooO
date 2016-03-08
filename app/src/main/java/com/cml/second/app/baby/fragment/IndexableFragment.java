@@ -1,6 +1,7 @@
 package com.cml.second.app.baby.fragment;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -60,6 +61,10 @@ public class IndexableFragment extends BaseFragment {
 
         listView.setAdapter(adapter);
         listView.setFastScrollEnabled(true);
+
+        bar.setTextColor(Color.WHITE);
+        bar.setSelectedTextColor(Color.BLUE);
+        bar.setTextSize(16);
 
         bar.setSection(Arrays.asList("#,A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z".split(",")));
     }
