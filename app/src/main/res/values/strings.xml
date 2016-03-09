@@ -11,6 +11,7 @@
     <string name="title_main">主页</string>
     <string name="title_babies">我的宝贝</string>
     <string name="title_indexable">我的宝贝</string>
+    <string name="title_recycler">recyclerview</string>
     <string name="title_friends">我的好友</string>
     <string name="title_share">我的分享</string>
     <string name="title_exchange">切换用户</string>
