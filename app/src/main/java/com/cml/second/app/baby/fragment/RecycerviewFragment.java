@@ -55,7 +55,7 @@ public class RecycerviewFragment extends BaseFragment {
 
         List<DataModel> data = new ArrayList<>();
 
-        for (int i = 0; i < 121; i++) {
+        for (int i = 0; i < 5; i++) {
             List<String> childNodes = new ArrayList<>();
             int childSize = (int) (Math.random() * 10 + 5);
             for (int j = 0; j < childSize; j++) {
