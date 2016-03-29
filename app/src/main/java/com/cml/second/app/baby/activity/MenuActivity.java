@@ -109,7 +109,7 @@ public class MenuActivity extends BaseActivity {
         menus.add(new NavigationMenuView.MenuItem(R.string.title_recycler, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
-        menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_bottom_sheet, android.R.drawable.ic_menu_camera));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));

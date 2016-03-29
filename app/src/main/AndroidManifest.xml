@@ -55,6 +55,8 @@
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize"/>
 
+        <activity android:name=".activity.BottomSheetActivity" android:screenOrientation="portrait"></activity>
+
 
         <!--照片截取功能-->
         <activity android:name="com.soundcloud.android.crop.CropImageActivity"/>

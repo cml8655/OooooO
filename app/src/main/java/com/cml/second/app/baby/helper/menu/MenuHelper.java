@@ -1,5 +1,6 @@
 package com.cml.second.app.baby.helper.menu;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -8,6 +9,7 @@ import android.widget.ListView;
 import android.widget.Toast;
 
 import com.cml.second.app.baby.R;
+import com.cml.second.app.baby.activity.BottomSheetActivity;
 import com.cml.second.app.baby.activity.ContainerActivity;
 import com.cml.second.app.baby.activity.MenuActivity;
 import com.cml.second.app.baby.fragment.BaseFragment;
@@ -82,6 +84,10 @@ public class MenuHelper implements NavigationMenuView.OnMenuSelectedLisener {
                 break;
             case 6:
                 ContainerActivity.startActivity(menuActivity, TextSwitcherFragment.class);
+                break;
+            case 7:
+                menuActivity.startActivity(new Intent(menuActivity, BottomSheetActivity.class));
+//                ContainerActivity.startActivity(menuActivity, BottomSheetFragment.class);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
