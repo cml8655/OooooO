@@ -102,6 +102,10 @@ public class MenuActivity extends BaseActivity {
 
         menuView = (NavigationMenuView) findViewById(R.id.nav_view);
 
+        View headerView = LayoutInflater.from(this).inflate(R.layout.nav_header_menu, null);
+        menuView.setHeader(headerView);
+        menuView.setMenuSelectedLisener(menuHelper);
+
         List<NavigationMenuView.MenuItem> menus = new ArrayList<>();
         menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
@@ -115,9 +119,7 @@ public class MenuActivity extends BaseActivity {
         menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
         menuView.setMenus(menus);
 
-        View headerView = LayoutInflater.from(this).inflate(R.layout.nav_header_menu, null);
-        menuView.setHeader(headerView);
-        menuView.setMenuSelectedLisener(menuHelper);
+
 
 //        TextView navigationView = (TextView) findViewById(R.id.nav_view);
 //        navigationView.setNavigationItemSelectedListener(menuHelper);

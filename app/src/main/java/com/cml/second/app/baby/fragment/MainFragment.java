@@ -1,5 +1,6 @@
 package com.cml.second.app.baby.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.Toast;
 import com.bumptech.glide.Glide;
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.activity.MenuActivity;
+import com.readystatesoftware.viewbadger.BadgeView;
 import com.socks.library.KLog;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
@@ -17,12 +19,17 @@ import com.umeng.socialize.bean.SHARE_MEDIA;
 
 import java.util.Map;
 
+import butterknife.Bind;
 import butterknife.OnClick;
 
 /**
  * Created by cmlBeliever on 2016/2/24.
  */
 public class MainFragment extends BaseFragment {
+
+
+    @Bind(R.id.test_layout)
+    View aa;
 
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
@@ -36,6 +43,14 @@ public class MainFragment extends BaseFragment {
         Glide.with(this).load("http://pic11.nipic.com/20101107/5963073_141803043683_2.gif").asGif().placeholder(R.drawable.success_circle).into(img);
 //        Glide.with(this).load("http://b.hiphotos.baidu.com/zhidao/pic/item/63d9f2d3572c11dfb068871a612762d0f703c249.jpg").into(img);
         container.addView(img);
+
+        //TODO 去除demo代码
+        BadgeView titlebarBellViewBadgeView = new BadgeView(getActivity(), aa);
+        titlebarBellViewBadgeView.setBadgeBackgroundColor(Color.RED);
+        titlebarBellViewBadgeView.setTextSize(14);
+        titlebarBellViewBadgeView.setText("8");
+        titlebarBellViewBadgeView.setBadgePosition(BadgeView.POSITION_TOP_RIGHT);
+        titlebarBellViewBadgeView.show();
 
 //        <ImageView
 //        android:id="@+id/img"

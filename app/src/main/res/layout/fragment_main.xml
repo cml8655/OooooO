@@ -14,11 +14,30 @@
         android:layoutAnimation="@anim/test"
         android:orientation="vertical">
 
+        <RelativeLayout
+            android:id="@+id/test_layout"
+            android:padding="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
+
+            <ImageView
+                android:id="@+id/test"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_launcher"/>
+
+        </RelativeLayout>
+
+        <com.cml.second.app.baby.widget.ProgressView
+            android:layout_width="match_parent"
+            android:layout_height="5dp"/>
+
         <Button
             android:id="@+id/qq_login"
             android:layout_width="match_parent"
-            android:text="QQ登录"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content"
+            android:text="QQ登录"/>
 
         <android.support.v7.widget.CardView
             android:layout_width="match_parent"
