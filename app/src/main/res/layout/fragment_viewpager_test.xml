@@ -3,14 +3,12 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#ff0"
-              android:clipToPadding="false"
               android:orientation="vertical">
 
     <android.support.v4.view.ViewPager
-        android:background="#F00"
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clipToPadding="false"/>
+        android:background="#FFF"/>
 
 </LinearLayout>

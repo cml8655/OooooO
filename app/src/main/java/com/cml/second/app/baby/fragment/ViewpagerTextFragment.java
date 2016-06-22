@@ -26,8 +26,7 @@ public class ViewpagerTextFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        viewPager.setOffscreenPageLimit(3);
-        viewPager.setPageMargin(20);
+        viewPager.setOffscreenPageLimit(1);
         viewPager.setAdapter(new PagerAdapter() {
             @Override
             public int getCount() {
@@ -50,7 +49,7 @@ public class ViewpagerTextFragment extends BaseFragment {
                 TextView textView = new TextView(getActivity());
                 textView.setText("vvvvvvvvvv" + position);
                 textView.setGravity(Gravity.CENTER);
-                textView.setBackgroundColor(Color.CYAN);
+                textView.setBackgroundColor(position % 2 == 0 ? Color.CYAN : Color.GREEN);
                 textView.setLayoutParams(new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
                 container.addView(textView);
                 textView.setOnClickListener(new View.OnClickListener() {
@@ -67,6 +66,7 @@ public class ViewpagerTextFragment extends BaseFragment {
                 return 0.8f;
             }
         });
+        viewPager.setCurrentItem(50);
 
 
     }
