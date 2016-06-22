@@ -19,6 +19,7 @@ import com.cml.second.app.baby.fragment.MainFragment;
 import com.cml.second.app.baby.fragment.RecycerviewFragment;
 import com.cml.second.app.baby.fragment.ShareFragment;
 import com.cml.second.app.baby.fragment.TextSwitcherFragment;
+import com.cml.second.app.baby.fragment.ViewpagerTextFragment;
 import com.cml.second.app.common.widget.menu.NavigationMenuView;
 
 /**
@@ -89,10 +90,13 @@ public class MenuHelper implements NavigationMenuView.OnMenuSelectedLisener {
                 menuActivity.startActivity(new Intent(menuActivity, BottomSheetActivity.class));
 //                ContainerActivity.startActivity(menuActivity, BottomSheetFragment.class);
                 break;
+            case 11:
+                ContainerActivity.startActivity(menuActivity, ViewpagerTextFragment.class);
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         if (null != item) {
-            Toast.makeText(menuActivity, "点击：" + menuActivity.getString(item.menuText), Toast.LENGTH_LONG).show();
+            Toast.makeText(menuActivity, "点击：" + menuActivity.getString(item.menuText)+":"+index, Toast.LENGTH_LONG).show();
         }
 
     }

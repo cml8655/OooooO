@@ -21,6 +21,7 @@
     <!--fragment/activity/dialog titles-->
     <string name="title_picture">照片添加</string>
     <string name="title_picker">请选择功能</string>
+    <string name="title_viewpager">viewpager</string>
 
 
     <string-array name="items_picker">

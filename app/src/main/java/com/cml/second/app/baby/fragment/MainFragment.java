@@ -47,7 +47,7 @@ public class MainFragment extends BaseFragment {
         //TODO 去除demo代码
         BadgeView titlebarBellViewBadgeView = new BadgeView(getActivity(), aa);
         titlebarBellViewBadgeView.setBadgeBackgroundColor(Color.RED);
-        titlebarBellViewBadgeView.setTextSize(14);
+        titlebarBellViewBadgeView.setTextSize(10);
         titlebarBellViewBadgeView.setText("8");
         titlebarBellViewBadgeView.setBadgePosition(BadgeView.POSITION_TOP_RIGHT);
         titlebarBellViewBadgeView.show();

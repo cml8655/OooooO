@@ -14,20 +14,38 @@
         android:layoutAnimation="@anim/test"
         android:orientation="vertical">
 
-        <RelativeLayout
-            android:id="@+id/test_layout"
-            android:padding="5dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center">
 
-            <ImageView
-                android:id="@+id/test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_launcher"/>
+        <android.support.v7.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:contentInsetLeft="0dp"
+            app:contentInsetStart="0dp">
 
-        </RelativeLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="right">
+
+                <RelativeLayout
+                    android:id="@+id/timeline_bell_layout"
+                    android:layout_width="40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="11dp"
+                    android:background="#000"
+                    android:padding="5dp">
+
+                    <ImageView
+                        android:id="@+id/test_layout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center"
+                        android:adjustViewBounds="true"
+                        android:src="@drawable/titlebar_bell"/>
+
+                </RelativeLayout>
+            </LinearLayout>
+        </android.support.v7.widget.Toolbar>
 
         <com.cml.second.app.baby.widget.ProgressView
             android:layout_width="match_parent"

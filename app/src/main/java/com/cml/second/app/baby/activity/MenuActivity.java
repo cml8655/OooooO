@@ -117,8 +117,8 @@ public class MenuActivity extends BaseActivity {
         menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_viewpager, android.R.drawable.ic_menu_gallery));
         menuView.setMenus(menus);
-
 
 
 //        TextView navigationView = (TextView) findViewById(R.id.nav_view);
