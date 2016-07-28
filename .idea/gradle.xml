@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/commonlib" />
             <option value="$PROJECT_DIR$/glidelib" />
             <option value="$PROJECT_DIR$/multi-image-selector" />
+            <option value="$PROJECT_DIR$/retrofit" />
             <option value="$PROJECT_DIR$/volleylib" />
           </set>
         </option>
@@ -24,6 +25,7 @@
             <option value="$PROJECT_DIR$/commonlib" />
             <option value="$PROJECT_DIR$/glidelib" />
             <option value="$PROJECT_DIR$/multi-image-selector" />
+            <option value="$PROJECT_DIR$/retrofit" />
             <option value="$PROJECT_DIR$/volleylib" />
           </set>
         </option>
