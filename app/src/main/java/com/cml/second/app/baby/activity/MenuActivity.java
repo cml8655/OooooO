@@ -108,15 +108,15 @@ public class MenuActivity extends BaseActivity {
 
         List<NavigationMenuView.MenuItem> menus = new ArrayList<>();
         menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
-        menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
-        menus.add(new NavigationMenuView.MenuItem(R.string.title_indexable, android.R.drawable.ic_menu_call));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_wheel, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_select, android.R.drawable.ic_menu_call));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_recycler, android.R.drawable.ic_menu_gallery));
-        menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
-        menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_behavior, android.R.drawable.ic_menu_camera));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_textswitch, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_bottom_sheet, android.R.drawable.ic_menu_camera));
-        menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
-        menus.add(new NavigationMenuView.MenuItem(R.string.title_main, android.R.drawable.ic_menu_camera));
-        menus.add(new NavigationMenuView.MenuItem(R.string.title_babies, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_none, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_none, android.R.drawable.ic_menu_camera));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_none, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_viewpager, android.R.drawable.ic_menu_gallery));
         menuView.setMenus(menus);
 
