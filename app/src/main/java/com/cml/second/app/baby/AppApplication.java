@@ -3,6 +3,8 @@ package com.cml.second.app.baby;
 import android.app.Application;
 import android.content.Context;
 
+import com.activeandroid.ActiveAndroid;
+import com.activeandroid.Configuration;
 import com.cml.second.app.common.crash.CrashHandler;
 import com.umeng.socialize.PlatformConfig;
 
@@ -17,6 +19,15 @@ public class AppApplication extends Application {
         super.onCreate();
         new CrashHandler().init(this);
         context = getApplicationContext();
-        PlatformConfig.setQQZone("1105212352","qC7NS39r8wIHfSkt");
+        PlatformConfig.setQQZone("1105212352", "qC7NS39r8wIHfSkt");
+        initDb("test");
+    }
+
+    public void initDb(String database) {
+        //动态设置db名字
+        Configuration configuration = new Configuration.Builder(this).setDatabaseName(database).create();
+        ActiveAndroid.setLoggingEnabled(true);
+        ActiveAndroid.initialize(configuration);
+//        ActiveAndroid.initialize(this);
     }
 }

@@ -47,5 +47,6 @@ dependencies {
     compile project(':commonlib')
     compile project(':volleylib')
     compile project(':multi-image-selector')
+    compile project(':activeandroid')
 }
 

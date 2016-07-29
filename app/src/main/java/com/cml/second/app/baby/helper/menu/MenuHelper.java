@@ -12,6 +12,7 @@ import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.activity.BottomSheetActivity;
 import com.cml.second.app.baby.activity.ContainerActivity;
 import com.cml.second.app.baby.activity.MenuActivity;
+import com.cml.second.app.baby.fragment.ActiveAndroidFragment;
 import com.cml.second.app.baby.fragment.BaseFragment;
 import com.cml.second.app.baby.fragment.CoordinatorLayoutFragment;
 import com.cml.second.app.baby.fragment.IndexableFragment;
@@ -93,10 +94,13 @@ public class MenuHelper implements NavigationMenuView.OnMenuSelectedLisener {
             case 11:
                 ContainerActivity.startActivity(menuActivity, ViewpagerTextFragment.class);
                 break;
+            case 12:
+                ContainerActivity.startActivity(menuActivity, ActiveAndroidFragment.class);
+                break;
         }
         drawer.closeDrawer(GravityCompat.START);
         if (null != item) {
-            Toast.makeText(menuActivity, "点击：" + menuActivity.getString(item.menuText)+":"+index, Toast.LENGTH_LONG).show();
+            Toast.makeText(menuActivity, "点击：" + menuActivity.getString(item.menuText) + ":" + index, Toast.LENGTH_LONG).show();
         }
 
     }
