@@ -33,9 +33,10 @@ public class ActiveAndroidFragment extends BaseFragment {
             case R.id.delData:
                 showToast("删除数据");
                 break;
-//            case R.id.queryData:
-//                showToast("查询数据");
-//                break;
+            case R.id.queryData:
+                showToast("queryitem");
+                queryItemData();
+                break;
             case R.id.modifyData:
                 showToast("修改数据");
                 break;
@@ -48,6 +49,7 @@ public class ActiveAndroidFragment extends BaseFragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         queryData();
     }
+
 
     private void insertData() {
         Category model = new Category();
@@ -76,6 +78,16 @@ public class ActiveAndroidFragment extends BaseFragment {
         }
         resultView.setText(buffer.toString());
     }
+
+    private void queryItemData() {
+        List<Item> items = Item.getItems();
+        StringBuffer buffer = new StringBuffer("----------查询item结果------------").append("\n");
+        for (Item item : items) {
+            buffer.append(item).append("\n");
+        }
+        resultView.setText(buffer.toString());
+    }
+
 
     private void showToast(String text) {
         Toast.makeText(getActivity(), text, Toast.LENGTH_LONG).show();

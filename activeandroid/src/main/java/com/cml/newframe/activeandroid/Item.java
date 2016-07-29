@@ -3,6 +3,9 @@ package com.cml.newframe.activeandroid;
 import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
+import com.activeandroid.query.Select;
+
+import java.util.List;
 
 /**
  * Created by cmlBeliever on 2016/7/29.
@@ -16,6 +19,10 @@ public class Item extends Model {
 
     @Column(name = "cccc")
     public Category c;
+
+    public static List<Item> getItems() {
+        return new Select().from(Item.class).execute();
+    }
 
     @Override
     public String toString() {
