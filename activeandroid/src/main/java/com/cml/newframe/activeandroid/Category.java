@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * Created by cmlBeliever on 2016/7/29.
  */
-@Table(name = "t_user",id = "user_id")
+@Table(name = "t_user")
 public class Category extends Model {
     @Column(notNull = true)
     public String userName;
@@ -29,7 +29,7 @@ public class Category extends Model {
     }
 
     public static List<Category> getUsers() {
-        return new Select().from(Category.class).orderBy("user_id desc").execute();
+        return new Select().from(Category.class).orderBy("id desc").execute();
     }
 
     public List<Item> getModel() {

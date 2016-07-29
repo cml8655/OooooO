@@ -29,6 +29,7 @@ public class ActiveAndroidFragment extends BaseFragment {
         switch (view.getId()) {
             case R.id.addData:
                 insertData();
+                queryData();
                 break;
             case R.id.delData:
                 showToast("删除数据");
@@ -41,7 +42,7 @@ public class ActiveAndroidFragment extends BaseFragment {
                 showToast("修改数据");
                 break;
         }
-        queryData();
+
 
     }
 
@@ -80,6 +81,7 @@ public class ActiveAndroidFragment extends BaseFragment {
     }
 
     private void queryItemData() {
+        resultView.setText("");
         List<Item> items = Item.getItems();
         StringBuffer buffer = new StringBuffer("----------查询item结果------------").append("\n");
         for (Item item : items) {
