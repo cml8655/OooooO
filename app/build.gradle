@@ -48,5 +48,6 @@ dependencies {
     compile project(':volleylib')
     compile project(':multi-image-selector')
     compile project(':activeandroid')
+    compile project(':explosioncollect')
 }
 

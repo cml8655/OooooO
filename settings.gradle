@@ -1,1 +1,1 @@
-include ':app', ':glidelib', ':commonlib', ':volleylib', ':multi-image-selector', ':retrofit', ':activeandroid'
+include ':app', ':glidelib', ':commonlib', ':volleylib', ':multi-image-selector', ':retrofit', ':activeandroid', ':explosioncollect'
