@@ -1,11 +1,13 @@
 package com.cml.second.app.baby.fragment;
 
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.widget.Toast;
@@ -37,7 +39,6 @@ public class AudioFragment extends BaseFragment {
             path.mkdirs();
         }
         recorderFile = new File(path, "recorder.3gp");
-
         mMediaRecorder = new MediaRecorder();
         try {
             //设置成3gp输出方式
@@ -118,12 +119,41 @@ public class AudioFragment extends BaseFragment {
     }
 
     private void startRecorder() {
+
+        //仅在6.0以上app有效
+        //        PackageManager packageManager = getActivity().getPackageManager();
+        //        int permission = packageManager.checkPermission(Manifest.permission.RECORD_AUDIO, getActivity().getPackageName());
+        //        if (PackageManager.PERMISSION_GRANTED == permission) {
+        //            Toast.makeText(getActivity(), "已经授权", Toast.LENGTH_LONG).show();
+        //        } else {
+        //            Toast.makeText(getActivity(), "未授权", Toast.LENGTH_LONG).show();
+        //        }
+
         if (isRecording) {
             Toast.makeText(getActivity(), "正在录音", Toast.LENGTH_LONG).show();
             return;
         }
-        isRecording = true;
-        mMediaRecorder.start();
+
+        try {
+            mMediaRecorder.start();
+            isRecording = true;
+
+        } catch (Exception e) {
+            if (!(e instanceof IllegalStateException)) {
+                Toast.makeText(getActivity(), "录音失败，未授权", Toast.LENGTH_LONG).show();
+                //开启授权
+                startPermissionGrant();
+            }
+        }
+    }
+
+    private void startPermissionGrant() {
+        try {
+            Intent intent = new Intent(Settings.ACTION_APPLICATION_DETAILS_SETTINGS);
+            intent.setData(Uri.parse("package:" + getActivity().getPackageName()));
+            getActivity().startActivity(intent);
+        } catch (Exception e) {
+        }
     }
 
     @Override
