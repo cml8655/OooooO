@@ -8,7 +8,6 @@
       <module fileurl="file://$PROJECT_DIR$/commonlib/commonlib.iml" filepath="$PROJECT_DIR$/commonlib/commonlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/glidelib/glidelib.iml" filepath="$PROJECT_DIR$/glidelib/glidelib.iml" />
       <module fileurl="file://$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" filepath="$PROJECT_DIR$/multi-image-selector/multi-image-selector.iml" />
-      <module fileurl="file://$PROJECT_DIR$/retrofit/nativieservice.iml" filepath="$PROJECT_DIR$/retrofit/nativieservice.iml" />
       <module fileurl="file://$PROJECT_DIR$/retrofit/retrofit.iml" filepath="$PROJECT_DIR$/retrofit/retrofit.iml" />
       <module fileurl="file://$PROJECT_DIR$/volleylib/volleylib.iml" filepath="$PROJECT_DIR$/volleylib/volleylib.iml" />
     </modules>

@@ -27,6 +27,7 @@
     <string name="title_picker">请选择功能</string>
     <string name="title_viewpager">viewpager</string>
     <string name="title_activeandroid">db(activeandroid)</string>
+    <string name="title_audio">录音</string>
     <string name="title_none">占个坑</string>
 
 

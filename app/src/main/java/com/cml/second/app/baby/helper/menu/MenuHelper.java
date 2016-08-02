@@ -13,6 +13,7 @@ import com.cml.second.app.baby.activity.BottomSheetActivity;
 import com.cml.second.app.baby.activity.ContainerActivity;
 import com.cml.second.app.baby.activity.MenuActivity;
 import com.cml.second.app.baby.fragment.ActiveAndroidFragment;
+import com.cml.second.app.baby.fragment.AudioFragment;
 import com.cml.second.app.baby.fragment.BaseFragment;
 import com.cml.second.app.baby.fragment.CoordinatorLayoutFragment;
 import com.cml.second.app.baby.fragment.IndexableFragment;
@@ -96,6 +97,9 @@ public class MenuHelper implements NavigationMenuView.OnMenuSelectedLisener {
                 break;
             case 12:
                 ContainerActivity.startActivity(menuActivity, ActiveAndroidFragment.class);
+                break;
+            case 13://录音功能
+                ContainerActivity.startActivity(menuActivity, AudioFragment.class);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);
