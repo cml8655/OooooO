@@ -34,7 +34,7 @@ public class PhotoViewActivity extends BaseActivity {
             @Override
             public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> animation) {
                 super.onResourceReady(resource, animation);
-                new PhotoViewAttacher(imageView);
+                new PhotoViewAttacher(imageView).setMaximumScale(2);
             }
         });
     }

@@ -17,6 +17,7 @@ import com.cml.second.app.baby.fragment.AudioFragment;
 import com.cml.second.app.baby.fragment.BaseFragment;
 import com.cml.second.app.baby.fragment.CoordinatorLayoutFragment;
 import com.cml.second.app.baby.fragment.ExplosionCollectFragment;
+import com.cml.second.app.baby.fragment.ImageViewFragment;
 import com.cml.second.app.baby.fragment.IndexableFragment;
 import com.cml.second.app.baby.fragment.MainFragment;
 import com.cml.second.app.baby.fragment.RecycerviewFragment;
@@ -102,8 +103,11 @@ public class MenuHelper implements NavigationMenuView.OnMenuSelectedLisener {
             case 13://录音功能
                 ContainerActivity.startActivity(menuActivity, AudioFragment.class);
                 break;
-            case 14://录音功能
+            case 14:
                 ContainerActivity.startActivity(menuActivity, ExplosionCollectFragment.class);
+                break;
+            case 15:
+                ContainerActivity.startActivity(menuActivity, ImageViewFragment.class);
                 break;
         }
         drawer.closeDrawer(GravityCompat.START);

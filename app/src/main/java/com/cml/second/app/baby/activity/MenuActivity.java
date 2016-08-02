@@ -121,7 +121,7 @@ public class MenuActivity extends BaseActivity {
         menus.add(new NavigationMenuView.MenuItem(R.string.title_activeandroid, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_audio, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_explossion_collect, android.R.drawable.ic_menu_gallery));
-        menus.add(new NavigationMenuView.MenuItem(R.string.title_none, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_img, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_none, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_none, android.R.drawable.ic_menu_gallery));
         menuView.setMenus(menus);
