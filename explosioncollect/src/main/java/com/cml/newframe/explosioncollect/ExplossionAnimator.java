@@ -3,6 +3,7 @@ package com.cml.newframe.explosioncollect;
 import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.view.View;
@@ -14,7 +15,10 @@ import android.view.animation.AccelerateInterpolator;
 public class ExplossionAnimator extends ValueAnimator {
 
     private static AccelerateInterpolator accelerateInterpolator = new AccelerateInterpolator(0.8f);
-    private static final int PARTICLE_SIZE = 15;
+    private static final int PARTICLE_SIZE = 10;
+    private static final int EXPLOSSION_X = 5;
+    private static final int EXPLOSSION_Y = 5;
+
 
     private View container;
     private Bitmap bitmap;
@@ -25,6 +29,9 @@ public class ExplossionAnimator extends ValueAnimator {
     private float distanceY;
 
     private Particle[] particles;
+
+    private int w;
+    private int h;
 
     public ExplossionAnimator(View container, Bitmap bitmap, PointF fromLocation, PointF targetLocation) {
         this.container = container;
@@ -38,18 +45,34 @@ public class ExplossionAnimator extends ValueAnimator {
         setFloatValues(0, 100);
         setInterpolator(accelerateInterpolator);
 
-        int w = bitmap.getWidth() / (PARTICLE_SIZE + 2);
-        int h = bitmap.getHeight() / (PARTICLE_SIZE + 2);
+        w = bitmap.getWidth() / PARTICLE_SIZE;
+        h = bitmap.getHeight() / PARTICLE_SIZE;
+
+        int radius = Math.min(w, h) / 2;
 
         particles = new Particle[PARTICLE_SIZE * PARTICLE_SIZE];
 
+
         for (int i = 0; i < PARTICLE_SIZE; i++) {
             for (int j = 0; j < PARTICLE_SIZE; j++) {
-                int color = bitmap.getPixel((j + 1) * w, (i + 1) * h);//获取当前位置的颜色值
-
+                Particle particle = new Particle();
+//                particle.color = color;
+                particle.radius = (float) (radius * Math.random());
+                particle.x = fromLocation.x + j * w + getTrans(j, EXPLOSSION_X) * (Math.abs(PARTICLE_SIZE / 2 - j));
+                particle.y = fromLocation.y +i * h + getTrans(i, EXPLOSSION_Y) * (Math.abs(PARTICLE_SIZE / 2 - i));
+                particle.bitmap = Bitmap.createBitmap(bitmap, j * w, i * h, w, h);
+                particles[i * PARTICLE_SIZE + j] = particle;
             }
         }
     }
+
+    private int getTrans(int current, int value) {
+        if (current < PARTICLE_SIZE / 2) {
+            return -value;
+        }
+        return value;
+    }
+
 
     private void generateParticle() {
     }
@@ -64,10 +87,16 @@ public class ExplossionAnimator extends ValueAnimator {
         if (!isStarted()) {
             return;
         }
+        float value = getAnimatedFraction();
 
 //        Bitmap tempBitmap = Bitmap.createBitmap(bitmap, 0, 0, 20, 20);
-        PointF point = calculatePosition();
-        canvas.drawBitmap(bitmap, point.x, point.y, paint);
+        for (int i = 0; i < particles.length; i++) {
+            Particle particle = particles[i];
+            canvas.drawBitmap(particle.bitmap, particle.x + value * distanceX, particle.y + value * distanceY, paint);
+//            canvas.drawCircle(particle.x + value * distanceX, particle.y + value * distanceY, particle.radius, paint);
+        }
+//        PointF point = calculatePosition();
+//        canvas.drawBitmap(bitmap, point.x, point.y, paint);
         container.postInvalidate();
     }
 
@@ -85,6 +114,8 @@ public class ExplossionAnimator extends ValueAnimator {
         float y;
         float alpha;
         float radius;
+        int color = Color.GREEN;
+        Bitmap bitmap;
     }
 
 

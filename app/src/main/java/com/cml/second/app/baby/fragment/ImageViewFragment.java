@@ -8,7 +8,7 @@ import android.support.annotation.Nullable;
 import android.view.View;
 
 import com.cml.second.app.baby.R;
-import com.cml.second.app.baby.widget.MatrixImageView;
+import com.cml.second.app.baby.widget.PinchImageView;
 
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -21,14 +21,19 @@ import butterknife.Bind;
 public class ImageViewFragment extends BaseFragment {
 
     String path = "http://imgcno0.nos.netease.com/img/R1N2VWIyZFFQMzNXVW4rNTBWWWtzQXZRN3A4UUh2Uk03dWxqZlRCS0hYcW5Gem9oZ2dsaUZnPT0.jpg?watermark&type=2&fontsize=1980&dissolve=70&stripmeta=0&font=bXN5aA==&text=wqljaHVueXU=";
+//
+//    @Bind(R.id.img)
+//    MatrixImageView imageView;
 
-    @Bind(R.id.img)
-    MatrixImageView imageView;
+    @Bind(R.id.pinchImg)
+    PinchImageView imageView;
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         new ImageLoader().execute();
+//        ImageLoader.getInstance().init(new File(getActivity().getCacheDir(), "img").getAbsolutePath());
+//        ImageLoader.getInstance().loadImg(path, imageView);
     }
 
     private class ImageLoader extends AsyncTask<Void, Void, Bitmap> {

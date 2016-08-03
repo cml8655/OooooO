@@ -4,10 +4,15 @@
               android:layout_height="match_parent"
               android:orientation="vertical">
 
-    <com.cml.second.app.baby.widget.MatrixImageView
+    <com.cml.second.app.baby.widget.PinchImageView
+        android:layout_width="match_parent"
+        android:id="@+id/pinchImg"
+        android:layout_height="match_parent"/>
+
+  <!--  <com.cml.second.app.baby.widget.MatrixImageView
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scaleType="matrix"/>
-
+-->
 </LinearLayout>

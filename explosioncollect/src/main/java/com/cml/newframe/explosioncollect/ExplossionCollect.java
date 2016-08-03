@@ -51,7 +51,7 @@ public class ExplossionCollect extends View {
     }
 
 
-    public void start(View fromView, View toView) {
+    public void start(final View fromView, View toView) {
         Bitmap bitmap = Utils.createBitmapFromView(fromView);
 
         final ExplossionAnimator animator = new ExplossionAnimator(this, bitmap, getLocationOnScreen(fromView), getLocationOnScreen(toView));
@@ -60,13 +60,15 @@ public class ExplossionCollect extends View {
             public void onAnimationEnd(Animator animation) {
                 super.onAnimationEnd(animation);
                 explossionAnimators.remove(animator);
+                fromView.setVisibility(VISIBLE);
             }
         });
         animator.setStartDelay(100);
-        animator.setDuration(1000);
+        animator.setDuration(5000);
 
         explossionAnimators.add(animator);
         animator.start();
+        fromView.setVisibility(GONE);
     }
 
     private PointF getLocationOnScreen(View view) {

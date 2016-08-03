@@ -99,6 +99,9 @@ public class MatrixImageView extends ImageView {
         }
     }
 
+    public void setmMaxScale(float mMaxScale) {
+        this.mMaxScale = mMaxScale;
+    }
 
     private void initData() {
         mMatrix.set(getImageMatrix());
