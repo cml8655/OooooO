@@ -12,7 +12,7 @@ import dagger.Provides;
 public class Dagger2Module {
 
     @Provides
-    public Dagger2Present getPresent() {
+    public  Dagger2Present getPresent() {
         return new Dagger2Present();
     }
 }

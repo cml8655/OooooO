@@ -2,9 +2,12 @@ package com.cml.second.app.baby.fragment.dagger2;
 
 import android.widget.Toast;
 
+import javax.inject.Singleton;
+
 /**
  * Created by cmlBeliever on 2016/8/8.
  */
+@Singleton
 public class Dagger2Present implements Dagger2FragmentContract.Present {
     private Dagger2FragmentContract.View view;
 
