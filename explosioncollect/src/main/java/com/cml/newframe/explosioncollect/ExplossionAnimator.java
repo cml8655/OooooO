@@ -3,7 +3,6 @@ package com.cml.newframe.explosioncollect;
 import android.animation.ValueAnimator;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.PointF;
 import android.view.View;
@@ -12,13 +11,12 @@ import android.view.animation.AccelerateInterpolator;
 /**
  * Created by cmlBeliever on 2016/8/2.
  */
-public class ExplossionAnimator extends ValueAnimator {
+public class ExplossionAnimator extends ValueAnimator implements DrawableAnimator {
 
     private static AccelerateInterpolator accelerateInterpolator = new AccelerateInterpolator(0.8f);
     private static final int PARTICLE_SIZE = 10;
-    private static final int EXPLOSSION_X = 5;
-    private static final int EXPLOSSION_Y = 5;
-
+    private static final int EXPLOSSION_X = 20;
+    private static final int EXPLOSSION_Y = 20;
 
     private View container;
     private Bitmap bitmap;
@@ -56,10 +54,11 @@ public class ExplossionAnimator extends ValueAnimator {
         for (int i = 0; i < PARTICLE_SIZE; i++) {
             for (int j = 0; j < PARTICLE_SIZE; j++) {
                 Particle particle = new Particle();
-//                particle.color = color;
                 particle.radius = (float) (radius * Math.random());
-                particle.x = fromLocation.x + j * w + getTrans(j, EXPLOSSION_X) * (Math.abs(PARTICLE_SIZE / 2 - j));
-                particle.y = fromLocation.y +i * h + getTrans(i, EXPLOSSION_Y) * (Math.abs(PARTICLE_SIZE / 2 - i));
+                particle.x = fromLocation.x + j * w;
+                particle.transX = getTrans(j, EXPLOSSION_X) * (Math.abs(PARTICLE_SIZE / 2 - j));
+                particle.y = fromLocation.y + i * h;
+                particle.transY = getTrans(i, EXPLOSSION_Y) * (Math.abs(PARTICLE_SIZE / 2 - i));
                 particle.bitmap = Bitmap.createBitmap(bitmap, j * w, i * h, w, h);
                 particles[i * PARTICLE_SIZE + j] = particle;
             }
@@ -73,49 +72,34 @@ public class ExplossionAnimator extends ValueAnimator {
         return value;
     }
 
-
-    private void generateParticle() {
-    }
-
     @Override
     public void start() {
         super.start();
         container.invalidate();
     }
 
-    public void draw(Canvas canvas) {
+    public boolean draw(Canvas canvas) {
         if (!isStarted()) {
-            return;
+            return false;
         }
         float value = getAnimatedFraction();
 
-//        Bitmap tempBitmap = Bitmap.createBitmap(bitmap, 0, 0, 20, 20);
         for (int i = 0; i < particles.length; i++) {
             Particle particle = particles[i];
-            canvas.drawBitmap(particle.bitmap, particle.x + value * distanceX, particle.y + value * distanceY, paint);
-//            canvas.drawCircle(particle.x + value * distanceX, particle.y + value * distanceY, particle.radius, paint);
+            canvas.drawBitmap(particle.bitmap, particle.x + value * particle.transX, particle.y + value * particle.transY, paint);
         }
-//        PointF point = calculatePosition();
-//        canvas.drawBitmap(bitmap, point.x, point.y, paint);
         container.postInvalidate();
-    }
-
-    private PointF calculatePosition() {
-        float value = getAnimatedFraction();
-        PointF point = new PointF();
-        point.x = fromLocation.x + value * distanceX;
-        point.y = fromLocation.y + value * distanceY;
-        return point;
+        return true;
     }
 
 
     private class Particle {
         float x;
         float y;
-        float alpha;
         float radius;
-        int color = Color.GREEN;
         Bitmap bitmap;
+        float transX;
+        float transY;
     }
 
 

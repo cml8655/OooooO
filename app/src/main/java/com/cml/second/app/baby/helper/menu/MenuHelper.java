@@ -16,6 +16,7 @@ import com.cml.second.app.baby.fragment.ActiveAndroidFragment;
 import com.cml.second.app.baby.fragment.AudioFragment;
 import com.cml.second.app.baby.fragment.BaseFragment;
 import com.cml.second.app.baby.fragment.CoordinatorLayoutFragment;
+import com.cml.second.app.baby.fragment.Dagger2Fragment;
 import com.cml.second.app.baby.fragment.ExplosionCollectFragment;
 import com.cml.second.app.baby.fragment.ImageViewFragment;
 import com.cml.second.app.baby.fragment.IndexableFragment;
@@ -92,6 +93,10 @@ public class MenuHelper implements NavigationMenuView.OnMenuSelectedLisener {
                 break;
             case 7:
                 menuActivity.startActivity(new Intent(menuActivity, BottomSheetActivity.class));
+//                ContainerActivity.startActivity(menuActivity, BottomSheetFragment.class);
+                break;
+            case 8:
+                ContainerActivity.startActivity(menuActivity, Dagger2Fragment.class);
 //                ContainerActivity.startActivity(menuActivity, BottomSheetFragment.class);
                 break;
             case 11:

@@ -1,4 +1,5 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.neenbedankt.android-apt'
 
 android {
     compileSdkVersion 23
@@ -49,5 +50,9 @@ dependencies {
     compile project(':multi-image-selector')
     compile project(':activeandroid')
     compile project(':explosioncollect')
+
+    //dagger2
+    compile 'com.google.dagger:dagger:2.6'
+    apt 'com.google.dagger:dagger-compiler:2.6'
 }
 

@@ -46,7 +46,9 @@ public class ExplossionCollect extends View {
     public void draw(Canvas canvas) {
         super.draw(canvas);
         for (ExplossionAnimator anim : explossionAnimators) {
-            anim.draw(canvas);
+            if (anim.draw(canvas) && anim.isRunning()) {
+                break;
+            }
         }
     }
 
@@ -64,7 +66,7 @@ public class ExplossionCollect extends View {
             }
         });
         animator.setStartDelay(100);
-        animator.setDuration(5000);
+        animator.setDuration(1000);
 
         explossionAnimators.add(animator);
         animator.start();
