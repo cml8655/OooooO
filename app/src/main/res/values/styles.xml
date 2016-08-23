@@ -46,4 +46,9 @@
         <item name="android:windowExitAnimation">@anim/dialog_exit</item>
     </style>
 
+    <style name="PopupWindow">
+        <item name="android:windowEnterAnimation">@anim/anim_popupwindow_enter</item>
+        <item name="android:windowExitAnimation">@anim/anim_popupwindow_exit</item>
+    </style>
+
 </resources>

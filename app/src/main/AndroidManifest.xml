@@ -20,7 +20,7 @@
     <uses-feature android:name="android.hardware.camera"/>
     <uses-feature android:name="android.hardware.camera.autofocus"/>
 
-    <uses-permission  android:name="android.permission.RECORD_AUDIO"/>
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application
         android:name=".AppApplication"
@@ -35,6 +35,9 @@
             android:name="com.bumptech.glide.integration.volley.VolleyGlideModule"
             android:value="GlideModule"/>
 
+        <activity android:name=".activity.ScaleableImageActivity"
+                  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+            ></activity>
         <activity android:name=".MainActivity">
 
         </activity>
@@ -57,7 +60,9 @@
             android:name="me.nereo.multi_image_selector.MultiImageSelectorActivity"
             android:configChanges="orientation|screenSize"/>
 
-        <activity android:name=".activity.BottomSheetActivity" android:screenOrientation="portrait"></activity>
+        <activity
+            android:name=".activity.BottomSheetActivity"
+            android:screenOrientation="portrait"></activity>
 
 
         <!--照片截取功能-->
