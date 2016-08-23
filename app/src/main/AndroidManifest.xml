@@ -35,8 +35,10 @@
             android:name="com.bumptech.glide.integration.volley.VolleyGlideModule"
             android:value="GlideModule"/>
 
-        <activity android:name=".activity.ScaleableImageActivity"
-                  android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen"
+        <activity
+            android:name=".activity.ScaleableImageActivity"
+            android:configChanges="keyboardHidden|screenSize|orientation"
+            android:theme="@style/Theme.AppCompat"
             ></activity>
         <activity android:name=".MainActivity">
 
