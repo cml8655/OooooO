@@ -3,12 +3,10 @@ package com.cml.second.app.baby.widget;
 import android.content.Context;
 import android.graphics.drawable.ColorDrawable;
 import android.view.Gravity;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.PopupWindow;
-import android.widget.Toast;
 
 import com.cml.second.app.baby.R;
 
@@ -30,6 +28,12 @@ public class ScaleablePopupWindow {
         final View contentView = LayoutInflater.from(context).inflate(R.layout.activity_image_scale, null);
 
         imageView = (PinchImageView) contentView.findViewById(R.id.imagescale_img);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                window.dismiss();
+            }
+        });
         bgView = contentView.findViewById(R.id.imagescale_bg);
 
 
@@ -37,13 +41,6 @@ public class ScaleablePopupWindow {
         contentView.setLayoutParams(params);
         contentView.setFocusable(true);
         contentView.setFocusableInTouchMode(true);
-        contentView.setOnKeyListener(new View.OnKeyListener() {
-            @Override
-            public boolean onKey(View v, int keyCode, KeyEvent event) {
-                Toast.makeText(context, "key", Toast.LENGTH_LONG).show();
-                return false;
-            }
-        });
 
         window = new PopupWindow(contentView, ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT);
 //        window.setWidth(ViewGroup.LayoutParams.MATCH_PARENT);
@@ -51,6 +48,7 @@ public class ScaleablePopupWindow {
         window.setFocusable(true);
         window.setBackgroundDrawable(new ColorDrawable(context.getResources().getColor(android.R.color.transparent)));
         window.setAnimationStyle(R.style.PopupWindow);
+
     }
 
 
