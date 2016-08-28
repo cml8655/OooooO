@@ -5,13 +5,14 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.widget.PinchImageView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * Created by cmlBeliever on 2016/8/22.
@@ -23,6 +24,9 @@ public class ScaleableImageActivity extends Activity {
 
     @Bind(R.id.imagescale_img)
     PinchImageView imageView;
+
+    @Bind(R.id.img2)
+    ImageView imageView2;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -43,12 +47,18 @@ public class ScaleableImageActivity extends Activity {
         });
 
         ButterKnife.bind(this);
+
+        imageView2.post(new Runnable() {
+            @Override
+            public void run() {
+                new PhotoViewAttacher(imageView2);
+            }
+        });
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Toast.makeText(this, "changed:" + newConfig.orientation, Toast.LENGTH_LONG).show();
     }
 
     @Override
