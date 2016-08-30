@@ -5,7 +5,7 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
-import android.widget.Toast;
+import android.widget.ImageView;
 
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.widget.PinchImageView;
@@ -13,6 +13,7 @@ import com.cml.second.app.baby.widget.ScaleView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import uk.co.senab.photoview.PhotoViewAttacher;
 
 /**
  * Created by cmlBeliever on 2016/8/22.
