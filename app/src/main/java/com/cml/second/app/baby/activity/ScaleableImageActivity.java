@@ -28,6 +28,9 @@ public class ScaleableImageActivity extends Activity {
     @Bind(R.id.imagescale_custom)
     ScaleView scaleImageView;
 
+    @Bind(R.id.img2)
+    ImageView imageView2;
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,12 +50,18 @@ public class ScaleableImageActivity extends Activity {
         });
 
         ButterKnife.bind(this);
+
+        imageView2.post(new Runnable() {
+            @Override
+            public void run() {
+                new PhotoViewAttacher(imageView2);
+            }
+        });
     }
 
     @Override
     public void onConfigurationChanged(Configuration newConfig) {
         super.onConfigurationChanged(newConfig);
-        Toast.makeText(this, "changed:" + newConfig.orientation, Toast.LENGTH_LONG).show();
     }
 
     @Override
