@@ -9,6 +9,7 @@ import android.widget.Toast;
 
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.widget.PinchImageView;
+import com.cml.second.app.baby.widget.ScaleView;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -23,6 +24,9 @@ public class ScaleableImageActivity extends Activity {
 
     @Bind(R.id.imagescale_img)
     PinchImageView imageView;
+
+    @Bind(R.id.imagescale_custom)
+    ScaleView scaleImageView;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

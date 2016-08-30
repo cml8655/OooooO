@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout android:id="@+id/imagescale_bg"
+              xmlns:android="http://schemas.android.com/apk/res/android"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:id="@+id/imagescale_bg"
               android:background="@android:color/black"
               android:orientation="vertical">
 
     <com.cml.second.app.baby.widget.PinchImageView
         android:id="@+id/imagescale_img"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:src="@drawable/imagescale"/>
+
+    <com.cml.second.app.baby.widget.ScaleView
         android:layout_width="match_parent"
-        android:src="@drawable/imagescale"
-        android:layout_height="match_parent"/>
+        android:id="@+id/imagescale_custom"
+        android:layout_height="match_parent"
+        android:src="@drawable/imagescale"/>
 
 </LinearLayout>
