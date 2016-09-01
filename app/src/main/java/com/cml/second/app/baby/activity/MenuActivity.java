@@ -116,7 +116,7 @@ public class MenuActivity extends BaseActivity {
         menus.add(new NavigationMenuView.MenuItem(R.string.title_bottom_sheet, android.R.drawable.ic_menu_camera));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_bottom_dagger2, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_imagescale, android.R.drawable.ic_menu_camera));
-        menus.add(new NavigationMenuView.MenuItem(R.string.title_none, android.R.drawable.ic_menu_gallery));
+        menus.add(new NavigationMenuView.MenuItem(R.string.title_nestscrolling, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_viewpager, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_activeandroid, android.R.drawable.ic_menu_gallery));
         menus.add(new NavigationMenuView.MenuItem(R.string.title_audio, android.R.drawable.ic_menu_gallery));

@@ -21,6 +21,7 @@ import com.cml.second.app.baby.fragment.ExplosionCollectFragment;
 import com.cml.second.app.baby.fragment.ImageViewFragment;
 import com.cml.second.app.baby.fragment.IndexableFragment;
 import com.cml.second.app.baby.fragment.MainFragment;
+import com.cml.second.app.baby.fragment.NestScrollingFragment;
 import com.cml.second.app.baby.fragment.RecycerviewFragment;
 import com.cml.second.app.baby.fragment.ScaleableImageFragment;
 import com.cml.second.app.baby.fragment.ShareFragment;
@@ -100,6 +101,9 @@ public class MenuHelper implements NavigationMenuView.OnMenuSelectedLisener {
                 ContainerActivity.startActivity(menuActivity, Dagger2Fragment.class);
             case 9:
                 ContainerActivity.startActivity(menuActivity, ScaleableImageFragment.class);//仿微信图片缩放
+                break;
+            case 10:
+                ContainerActivity.startActivity(menuActivity, NestScrollingFragment.class);//nestScrolling
                 break;
             case 11:
                 ContainerActivity.startActivity(menuActivity, ViewpagerTextFragment.class);

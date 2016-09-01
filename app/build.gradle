@@ -33,8 +33,17 @@ dependencies {
 
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile 'com.android.support:cardview-v7:23.2.1'
-    compile 'com.android.support:design:23.2.1'
+    compile project(':glidelib')
+    compile project(':commonlib')
+    compile project(':volleylib')
+    compile project(':multi-image-selector')
+    compile project(':activeandroid')
+    compile project(':explosioncollect')
+
+    //dagger2
+    apt 'com.google.dagger:dagger-compiler:2.6'
+    compile 'com.android.support:cardview-v7:23.4.0'
+    compile 'com.android.support:design:23.4.0'
     compile 'com.jakewharton:butterknife:7.0.1'
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'me.imid.swipebacklayout.lib:library:1.0.0'
@@ -44,15 +53,7 @@ dependencies {
     compile 'com.github.zhaokaiqiang.klog:library:1.3.0'
     compile 'com.bigkoo:pickerview:2.0.8'
     compile 'de.hdodenhof:circleimageview:1.3.0'
-    compile project(':glidelib')
-    compile project(':commonlib')
-    compile project(':volleylib')
-    compile project(':multi-image-selector')
-    compile project(':activeandroid')
-    compile project(':explosioncollect')
-
-    //dagger2
     compile 'com.google.dagger:dagger:2.6'
-    apt 'com.google.dagger:dagger-compiler:2.6'
+    compile 'com.android.support:support-v4:23.4.0'
 }
 

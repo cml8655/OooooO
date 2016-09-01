@@ -1,5 +1,6 @@
 package com.cml.second.app.baby.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.LinearLayoutManager;
@@ -66,7 +67,7 @@ public class RecycerviewFragment extends BaseFragment {
             data.add(model);
         }
 
-        recyclerView.setAdapter(new MyAdapter(data));
+        recyclerView.setAdapter(new MyAdapter(data,getActivity()));
 //        new ItemTouchHelper(new DragableCallback(data)).attachToRecyclerView(recyclerView);//添加拖动功能
 
 //        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
@@ -88,20 +89,22 @@ public class RecycerviewFragment extends BaseFragment {
         return R.layout.fragment_recyclerview;
     }
 
-    private class MyAdapter extends RecyclerView.Adapter<MyHolder> {
+    public static class MyAdapter extends RecyclerView.Adapter<MyHolder> {
         List<DataModel> items;
+        private Context context;
 
-        public MyAdapter(List<DataModel> items) {
+        public MyAdapter(List<DataModel> items, Context context) {
             this.items = items;
+            this.context = context;
         }
 
         @Override
         public MyHolder onCreateViewHolder(ViewGroup parent, int viewType) {
             MyHolder holder = null;
             if (viewType == 0) {
-                holder = new MyHolder(LayoutInflater.from(getActivity()).inflate(R.layout.adapter_recycler_header, parent, false), viewType);
+                holder = new MyHolder(LayoutInflater.from(context).inflate(R.layout.adapter_recycler_header, parent, false), viewType);
             } else {
-                holder = new MyHolder(LayoutInflater.from(getActivity()).inflate(R.layout.adapter_recycler_items, parent, false), viewType);
+                holder = new MyHolder(LayoutInflater.from(context).inflate(R.layout.adapter_recycler_items, parent, false), viewType);
             }
 
             return holder;
@@ -123,7 +126,7 @@ public class RecycerviewFragment extends BaseFragment {
                     map.put("text", str);
                     childData.add(map);
                 }
-                holder.gridView.setAdapter(new SimpleAdapter(getContext(), childData, android.R.layout.simple_list_item_1, new String[]{"text"}, new int[]{android.R.id.text1}));
+                holder.gridView.setAdapter(new SimpleAdapter(context, childData, android.R.layout.simple_list_item_1, new String[]{"text"}, new int[]{android.R.id.text1}));
             }
 
 //            if (position % 3 == 0) {
@@ -144,7 +147,7 @@ public class RecycerviewFragment extends BaseFragment {
         }
     }
 
-    private class DataModel {
+    public static class DataModel {
         public String nodeName;
         public List<String> childNodes;
 
@@ -154,7 +157,7 @@ public class RecycerviewFragment extends BaseFragment {
         }
     }
 
-    private class MyHolder extends RecyclerView.ViewHolder {
+    public static class MyHolder extends RecyclerView.ViewHolder {
         public TextView textView;
         public int viewType;
 
