@@ -43,7 +43,6 @@ public class NestScrollingFragment extends BaseFragment {
         }
 
         recyclerView.setAdapter(new RecycerviewFragment.MyAdapter(data, getActivity()));
-
     }
 
     @Override
