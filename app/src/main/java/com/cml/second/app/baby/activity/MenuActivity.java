@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -38,7 +39,23 @@ public class MenuActivity extends BaseActivity {
     private MenuHelper menuHelper;
     private LinearLayout toolbarCustomLayout;//自定义toolbar背景界面
     public UMShareAPI umShareAPI;
+    @Override
+    protected void onRestart() {
+        Log.e("lifecycle", "onRestart");
+        super.onRestart();
+    }
 
+    @Override
+    protected void onResume() {
+        Log.e("lifecycle", "onresume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.e("lifecycle", "onPause");
+        super.onPause();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

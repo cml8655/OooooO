@@ -3,6 +3,7 @@ package com.cml.second.app.baby;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.umeng.socialize.UMAuthListener;
@@ -13,6 +14,24 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     UMShareAPI umShareAPI;
+
+    @Override
+    protected void onRestart() {
+        Log.e("lifecycle", "onRestart");
+        super.onRestart();
+    }
+
+    @Override
+    protected void onResume() {
+        Log.e("lifecycle", "onresume");
+        super.onResume();
+    }
+
+    @Override
+    protected void onPause() {
+        Log.e("lifecycle", "onPause");
+        super.onPause();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
