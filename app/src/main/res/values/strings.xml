@@ -34,6 +34,7 @@
     <string name="title_explossion_collect">explossionCollect</string>
     <string name="title_img">图片缩放</string>
     <string name="title_none">占个坑</string>
+    <string name="title_springanimnation">SpringAnimationDemo</string>
 
 
     <string-array name="items_picker">
