@@ -15,6 +15,7 @@ import android.widget.TextView;
 
 import com.cml.second.app.baby.R;
 import com.cml.second.app.baby.animator.ScaleInAnimator;
+import com.cml.second.app.baby.animator.adapter.ScaleInAnimationAdapter;
 import com.cml.second.app.common.widget.recyclerview.DividerItemDecoration;
 
 import java.util.ArrayList;
@@ -45,7 +46,7 @@ public class CustomRecyclerViewAnimator extends BaseFragment {
 
         final List<DataModel> data = new ArrayList<>();
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 50; i++) {
             List<String> childNodes = new ArrayList<>();
             int childSize = (int) (Math.random() * 10 + 5);
             for (int j = 0; j < childSize; j++) {
@@ -55,7 +56,7 @@ public class CustomRecyclerViewAnimator extends BaseFragment {
             data.add(model);
         }
 
-        recyclerView.setAdapter(new MyAdapter(data, getActivity()));
+        recyclerView.setAdapter(new ScaleInAnimationAdapter(new MyAdapter(data, getActivity())));
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
