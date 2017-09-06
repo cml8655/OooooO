@@ -31,7 +31,7 @@ public abstract class AnimationAdapter extends RecyclerView.Adapter<RecyclerView
   private Interpolator mInterpolator = new LinearInterpolator();
   private int mLastPosition = -1;
 
-  private boolean isFirstOnly = true;
+  private boolean isFirstOnly = false;
 
   public AnimationAdapter(RecyclerView.Adapter<RecyclerView.ViewHolder> adapter) {
     mAdapter = adapter;
