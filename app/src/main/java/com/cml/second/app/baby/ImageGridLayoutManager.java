@@ -17,8 +17,7 @@ public class ImageGridLayoutManager extends RecyclerView.LayoutManager {
 
     private Context context;
 
-    private int offsetX;
-    private int currentIndex = 0;
+    private int currentIndex = 1;
     private int childWidth;
     private int containerWidth;
 
@@ -42,16 +41,51 @@ public class ImageGridLayoutManager extends RecyclerView.LayoutManager {
         if (state.isPreLayout()) {
             return;
         }
-        // 分离所有的itemView
-        detachAndScrapAttachedViews(recycler);
-        offsetX = 0;
-        int offsetY = 0;
+        removeAndRecycleAllViews(recycler);
+        fill(0, recycler, state);
+    }
 
+    @Override
+    public boolean canScrollHorizontally() {
+        return true;
+    }
+
+    /**
+     * 根据位置画好数据
+     *
+     * @param dx
+     * @param recycler
+     * @param state
+     * @return
+     */
+    private int fill(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
+
+        if (state.isPreLayout()) {
+            return dx;
+        }
+
+        detachAndScrapAttachedViews(recycler);
+
+        int startIndex = calculateCurrentIndex(dx);
+        if (startIndex >= state.getItemCount() - 3) {
+            startIndex = state.getItemCount() - 3;
+            dx = 0;
+        }
+        int endIndex = startIndex + 4;
+        if (endIndex >= state.getItemCount() - 1) {
+            endIndex = state.getItemCount() - 1;
+            dx = 0;
+        }
+        int offsetStart;
+        if (totalOffset > 0) {
+            offsetStart = -totalOffset % childWidth;
+        } else {
+            offsetStart = childWidth - totalOffset % childWidth;
+        }
         //初始化三个
-        for (int i = 0; i < 3; i++) {
+        for (int i = startIndex; i < endIndex; i++) {
             // 根据position获取一个碎片view，可以从回收的view中获取，也可能新构造一个
             View scrap = recycler.getViewForPosition(i);
-
             addView(scrap);
             // 计算此碎片view包含边距的尺寸
             measureChildWithMargins(scrap, 0, 0);
@@ -61,34 +95,21 @@ public class ImageGridLayoutManager extends RecyclerView.LayoutManager {
 //            int width = getDecoratedMeasuredWidth(scrap);
             // 获取此碎片view包含边距和装饰的高度height
             int height = getDecoratedMeasuredHeight(scrap);
-            if (i != 1) {
-                height *= 0.6;
-                offsetY = (int) (height * 0.4);
-            } else {
-                offsetY = 0;
-            }
-
+            int offsetY = 0;
             // Important！布局到RecyclerView容器中，所有的计算都是为了得出任意position的item的边界来布局
-            layoutDecorated(scrap, offsetX, offsetY, offsetX + width, offsetY + height);
-
-            offsetX += width;
+            layoutDecorated(scrap, offsetStart, offsetY, offsetStart + width, offsetY + height);
+            offsetStart += width;
         }
-        currentIndex = 2;
-//        detachAndScrapAttachedViews(recycler);
-//        this.offsetX += -childWidth / 2;
-//        offsetChildrenHorizontal(-childWidth / 2);
+        return dx;
     }
 
-    private int getMaxOffsetX(RecyclerView.State state) {
-        if (getChildCount() == 0)
-            return 0;
-
-        return state.getItemCount() * childWidth - context.getResources().getDisplayMetrics().widthPixels;
+    protected int getHorizontalSpace() {
+        return getWidth() - getPaddingRight() - getPaddingLeft();
     }
 
-    @Override
-    public boolean canScrollHorizontally() {
-        return true;
+
+    private int calculateCurrentIndex(int dx) {
+        return Math.abs(totalOffset) / childWidth;
     }
 
     @Override
@@ -97,52 +118,11 @@ public class ImageGridLayoutManager extends RecyclerView.LayoutManager {
             return 0;
         }
         totalOffset += dx;
-
-        //dx<0 左→右
-        if (dx < 0) {
-            if (offsetX + dx < 0) {
-                dx = -offsetX;
-            }
-        } else {//dx>0 右→左
-            int maxOffsetX = getMaxOffsetX(state);
-            if (offsetX + dx > maxOffsetX) {
-                dx = maxOffsetX - offsetX;
-            }
-        }
-        offsetX += dx;
-        //计算view
-        fillView(dx, recycler, state);
+        dx = fill(dx, recycler, state);
         offsetChildrenHorizontal(-dx);
-
-        Log.i(TAG, "scrollHorizontallyBy:" + state);
         return dx;
     }
 
-    //填充view
-    protected void fillView(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
-        if (dx < 0 && currentIndex < state.getItemCount() - 1) {
-//            boolean isNewView = needAddView(dx, recycler, state);
-//            if (!isNewView)
-//                return;
-            View nextView = recycler.getViewForPosition(currentIndex + 1);
-            addView(nextView);
-            // 计算此碎片view包含边距的尺寸
-            measureChildWithMargins(nextView, 0, 0);
-            int height = getDecoratedMeasuredHeight(nextView);
-            int offsetY = 0;
-
-            int startX = getDecoratedRight(getChildAt(currentIndex));
-            currentIndex++;
-//            int startX = currentIndex * childWidth - totalOffset;
-            layoutDecorated(nextView, startX, offsetY, startX + childWidth, offsetY + height);
-        }
-
-    }
-
-    private boolean needAddView(int dx, RecyclerView.Recycler recycler, RecyclerView.State state) {
-        int maxOffset = getDecoratedRight(getChildAt(getChildCount() - 1)) - offsetX;
-        return true;
-    }
 
     @Override
     public RecyclerView.LayoutParams generateDefaultLayoutParams() {

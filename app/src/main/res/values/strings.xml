@@ -36,6 +36,7 @@
     <string name="title_none">占个坑</string>
     <string name="title_springanimnation">SpringAnimation-BottomNavigationView</string>
     <string name="title_custom_recyclerview">自定义RecyclerView</string>
+    <string name="title_custom_recyclerview_animator">RecyclerView动画</string>
 
 
     <string-array name="items_picker">
