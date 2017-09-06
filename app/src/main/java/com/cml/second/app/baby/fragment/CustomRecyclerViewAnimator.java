@@ -2,23 +2,26 @@ package com.cml.second.app.baby.fragment;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
-import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.DisplayMetrics;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.OvershootInterpolator;
 import android.widget.TextView;
 
 import com.cml.second.app.baby.R;
+import com.cml.second.app.baby.animator.ScaleInAnimator;
 import com.cml.second.app.common.widget.recyclerview.DividerItemDecoration;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.Bind;
+
 
 /**
  * Created by cmlBeliever on 2017/9/6.
@@ -35,13 +38,14 @@ public class CustomRecyclerViewAnimator extends BaseFragment {
         recyclerView.addItemDecoration(new DividerItemDecoration(getContext(), DividerItemDecoration.VERTICAL_LIST));//只支持 LinearLayoutManager
 //        recyclerView.addItemDecoration(new DividerGridItemDecoration(getActivity()));//GridLayoutManager 专用
         //设置Item增加、移除动画
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setItemAnimator(new ScaleInAnimator(new OvershootInterpolator()));
+//        recyclerView.setItemAnimator(new DefaultItemAnimator());
 //        recyclerView.setLayoutManager(new ImageGridLayoutManager(getContext()));
         recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 3));
 
-        List<DataModel> data = new ArrayList<>();
+        final List<DataModel> data = new ArrayList<>();
 
-        for (int i = 0; i < 50; i++) {
+        for (int i = 0; i < 2; i++) {
             List<String> childNodes = new ArrayList<>();
             int childSize = (int) (Math.random() * 10 + 5);
             for (int j = 0; j < childSize; j++) {
@@ -52,6 +56,21 @@ public class CustomRecyclerViewAnimator extends BaseFragment {
         }
 
         recyclerView.setAdapter(new MyAdapter(data, getActivity()));
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                List<String> childNodes = new ArrayList<>();
+                int childSize = (int) (Math.random() * 10 + 5);
+                for (int j = 0; j < childSize; j++) {
+                    childNodes.add("child:" + j);
+                }
+                DataModel model = new DataModel("title");
+                data.add(model);
+                recyclerView.getAdapter().notifyItemInserted(data.size() - 1);
+                handler.postDelayed(this, 500);
+            }
+        }, 500);
     }
 
     @Override
@@ -88,7 +107,7 @@ public class CustomRecyclerViewAnimator extends BaseFragment {
 //                holder.textView.setBackground(new ColorDrawable(Color.GREEN));
 //            }
             holder.textView.setText(model.nodeName);
-            holder.containerView.setLayoutParams(new ViewGroup.LayoutParams((int) (width * 0.6), height));
+//            holder.containerView.setLayoutParams(new ViewGroup.LayoutParams((int) (width * 0.6), height));
         }
 
         @Override
